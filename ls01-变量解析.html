@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>变量的解构赋值</title>
+	<script>
+		// let a = 1;
+		// let b = 2;
+		// let c = 3;
+
+		// // ES6允许写成下面这样。
+		// let [a, b, c] = [1, 2, 3];
+		// // “模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。
+		// let [foo, [[bar], baz]] = [1, [[2], 3]];
+		// foo // 1
+		// bar // 2
+		// baz // 3
+
+		// let [ , , third] = ["foo", "bar", "baz"];
+		// third // "baz"
+
+
+		// let [x, , y] = [1, 2, 3];
+		// x // 1
+		// y // 3
+
+		// let [head, ...tail] = [1, 2, 3, 4];
+		// head // 1
+		// tail // [2, 3, 4]
+
+		// let [x, y, ...z] = ['a'];
+		// x // "a"
+		// y // undefined
+		// z // []
+		// // 如果解构不成功，变量的值就等于undefined。
+		// let [foo] = [];
+		// let [bar, foo] = [1];	
+		// function* fibs() {
+		//   let a = 0;
+		//   let b = 1;
+		//   while (true) {
+		//     yield a;
+		//     [a, b] = [b, a + b];
+		//   }
+		// }
+
+		// let [first, second, third, fourth, fifth, sixth] = fibs();
+		// sixth // 5
+		// console.log(first, second, third, fourth, fifth, sixth)//0 1 1 2 3 5
+
+
+		// let [foo = true] = [];
+		// foo // true
+
+		// let [x, y = 'b'] = ['a']; // x='a', y='b'
+		// let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
+
+		// let [x = 1] = [undefined];
+		// x // 1
+
+		// let [x = 1] = [null];
+		// x // null
+
+		function f() {
+		  console.log('aaa');
+		}
+
+		let [x = f()] = [1];
+		console.log(x); //1
+	</script>
+</head>
+<body>
+</body>
+</html>

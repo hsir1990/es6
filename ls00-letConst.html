@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>let,const的用法</title>
+	<script>
+		// {
+		// 	let a = 10;
+		// 	var b = 1;
+		// }
+		// //console.log(a);//报错
+		// console.log(b);
+		// for(let i=0; i<10; i++){
+		// 	console.log(i)
+		// }
+
+		// var a = [];
+		// for (let i = 0; i < 10; i++) {
+		//   a[i] = function () {
+		//     console.log(i);
+		//   };
+		//   // a[6]();//报错；
+		//   // a[i]();//打印0,1,2,3，.....8,9
+		// }
+		// a[6](); // 6
+		// // a[12]();//报错
+		// // a[i]();//报错
+
+
+		// var a = [];
+		// for (var i = 0; i < 10; i++) {
+		//   a[i] = function () {
+		//     console.log(i);
+		//   };
+		//   // a[6]();//报错
+		//   // a[6]();//打印0,1,2,3，.....8,9
+		// }
+		// a[1](); // 10
+		// // a[i]();//报错
+		// // a[12](); //报错
+
+		// // var 的情况
+		// console.log(foo); // 输出undefined
+		// var foo = 2;
+
+		// // let 的情况
+		// console.log(bar); // 报错ReferenceError
+		// let bar = 2;
+
+
+		// var tmp = 123;
+
+		// if (true) {
+		//   tmp = 'abc'; // ReferenceError
+		//   let tmp;
+		// }//ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+
+		// var tmp = new Date();//时间
+
+		// function f() {
+		//   console.log(tmp);//undefined
+		//   if (false) {
+		//     var tmp = 'hello world';
+		//   }
+		//  console.log(tmp);//undefined 
+		// if (false) {
+		//     var tmp = 'hello world';
+		//   }		  
+		//   console.log(tmp);//打印hello world
+		// }
+
+		// f(); // undefined
+
+		// var s = 'hello';
+
+		// for (var i = 0; i < s.length; i++) {
+		//   console.log(s[i]);//h e l l o
+		// }
+
+		// console.log(i); // 5
+
+		// function f1() {
+		//   let n = 5;
+		//   if (true) {
+		//     let n = 10;
+		//   }
+		//   console.log(n); // 5
+		// }
+		// f1();
+		// {{{{
+		//   let insane = 'Hello World';
+		//   console.log(insane); // 报错
+		// }}}};
+
+		// // 块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。
+		// // IIFE 写法
+		// (function () {
+		//   var tmp = ...;
+		//   ...
+		// }());
+
+		// // 块级作用域写法
+		// {
+		//   let tmp = ...;
+		//   ...
+		// }
+		// //ES5 规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明。
+
+		// // 情况一
+		// if (true) {
+		//   function f() {}
+		// }
+
+		// // 情况二
+		// try {
+		//   function f() {}
+		// } catch(e) {
+		//   // ...
+		// }
+		// //上面两种函数声明，根据 ES5 的规定都是非法的。
+		// // 但是，浏览器没有遵守这个规定，为了兼容以前的旧代码，还是支持在块级作用域之中声明函数，因此上面两种情况实际都能运行，不会报错。
+		// function f() { console.log('I am outside!'); }
+
+		// (function () {
+		//   if (false) {
+		//     // 重复声明一次函数f
+		//     function f() { console.log('I am inside!'); }
+		//   }
+
+		//   f();//报错
+		// if (true) {
+		//     // 重复声明一次函数f
+		//     function f() { console.log('I am inside!'); }
+		//   }		
+		//   f();  // I am inside! 
+		// }());
+
+		// // ES5 环境
+		// function f() { console.log('I am outside!'); }
+
+		// (function () {
+		//   function f() { console.log('I am inside!'); }
+		//   if (false) {
+		//   }
+		//   f();
+		// }());
+		// {
+		//   let a = 'secret';
+		//   function f() {
+		//     return a;
+		//   }
+		// }
+
+		// // 函数表达式
+		// {
+		//   let a = 'secret';
+		//   let f = function () {
+		//     return a;
+		//   };
+		// }
+			// 		// 不报错
+			// 'use strict';
+			// if (true) {
+			//   function f() {}
+			// }
+
+			// // 报错
+			// 'use strict';
+			// if (true)
+			//   function f() {}
+
+			// const PI = 3.1415;
+			// PI // 3.1415
+
+			// PI = 3;
+			// // TypeError: Assignment to constant variable.
+			// const foo;
+			// // SyntaxError: Missing initializer in const declaration	
+			// // 暂时性死区
+			// if (true) {
+			//   console.log(MAX); // ReferenceError
+			//   const MAX = 5;
+			// }
+			// var message = "Hello!";
+			// let age = 25;
+			// // 以下两行都会报错(两个都错了)
+			// const message = "Goodbye!";
+			// const age = 30;
+			// const foo = {};
+
+			// // 为 foo 添加一个属性，可以成功
+			// foo.prop = 123;
+			// foo.prop // 123
+
+			// // 将 foo 指向另一个对象，就会报错
+			// foo = {}; // TypeError: "foo" is read-only
+			// const foo = Object.freeze({});
+
+			// // 常规模式时，下面一行不起作用；
+			// // 严格模式时，该行会报错
+			// foo.prop = 123;
+	// var constantize = (obj) => {
+	//   Object.freeze(obj);
+	//   Object.keys(obj).forEach( (key, i) => {
+	//     if ( typeof obj[key] === 'object' ) {
+	//       constantize( obj[key] );
+	//     }
+	//   });
+	// };
+	// window.a = 1;
+	// a // 1
+
+	// a = 2;
+	// window.a // 2
+
+	// var a = 1;
+	// // 如果在Node的REPL环境，可以写成global.a
+	// // 或者采用通用方法，写成this.a
+	// window.a // 1
+
+	// let b = 1;
+	// window.b // undefined
+
+	// 方法一
+	(typeof window !== 'undefined'
+	   ? window
+	   : (typeof process === 'object' &&
+	      typeof require === 'function' &&
+	      typeof global === 'object')
+	     ? global
+	     : this);
+
+	// 方法二
+	var getGlobal = function () {
+	  if (typeof self !== 'undefined') { return self; }
+	  if (typeof window !== 'undefined') { return window; }
+	  if (typeof global !== 'undefined') { return global; }
+	  throw new Error('unable to locate global object');
+	};
+	</script>
+</head>
+<body>
+
+</body>
+</html>
