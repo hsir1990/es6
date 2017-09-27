@@ -1,0 +1,44 @@
+Callback的一些缺点
+
+Callback调用层次多了，会递进多层。不利于代码编写，也不利于代码重用
+没有一个统一的错误处理，需要在每个方法里面处理，并控制程序流程。
+
+为了解决这些缺点，采用了调用链的方式， promise或者 derfer
+
+Promise解决了递进调用的问题。有利于代码的编写，也利于代码的重用。
+调用链上增加了统一错误处理的模型，可以catch error，然后统一处理。
+
+js中ajax，event事件，setTimeOUt延迟调用均是异步调用
+
+
+es6趋势，常用异步
+异步模型
+    MessageQueue
+        储存callback执行的上下文，以及消息
+        setTime(f1, 30)
+        setTime(f2, 40)
+        setTime(f3, 50)
+    Eventloop
+        依次取出f1 f2 f3
+
+es6优化
+    promise
+        //new Promise(async).then(() => {console.log('success')})
+        //promise的作用
+        new Promise(async).then(callback)
+    thuk
+        thunkAsync = thukify(async)
+        //thunk的调用
+        thukify(async)(callback)
+
+generator
+    执行之后
+        next
+            value是yield后面的返回值
+            done是真的generator是否执行完毕
+        yield
+
+    异步关键
+        把异步代码像同步一样写
+    执行器
+        递归，就是自己调用自己，在于有多次重复调用
